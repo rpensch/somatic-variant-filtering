@@ -51,7 +51,10 @@ rule intersect:
     log:
         "logs/intersect/{sample}.log"
     shell:
-        "scripts/vcftools_intersect.sh {input.spm_vcf} {input.sim_vcf} {input.spm_bed} {input.sim_bed} {output.spm} {output.sim}"
+        """
+        vcftools --gzvcf {input.spm_vcf} --bed {input.spm_bed} --recode --recode-INFO-all --stdout | gzip -c > {output.spm}
+        vcftools --gzvcf {input.sim_vcf} --bed {input.sim_bed} --recode --recode-INFO-all --stdout | gzip -c > {output.sim}
+        """
 
 rule germline_filtering:
     input:
