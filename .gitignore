@@ -1,1 +1,4 @@
 .snakemake/
+config/samples.tsv
+config/config.yaml
+results/
