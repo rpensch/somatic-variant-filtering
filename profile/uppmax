@@ -1,5 +1,0 @@
-cluster: sbatch
-jobs: 50
-restart-times: 3
-
-jobscript: "slurm-jobscript.sh"
