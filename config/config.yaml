@@ -1,4 +1,5 @@
-samples: "config.samples.tsv"
+input_files: "config/input_files.tsv"
+germline_filter: false
 germline_data:
-  spm: "/home/rapha/ccancer_storage/cOSA_project/0_data/dog10K/dog10k.snps.bed.gz"
-  sim: "/home/rapha/ccancer_storage/cOSA_project/0_data/dog10K/dog10k.indels.bed.gz"
+  snps: "snps.bed"
+  indels: "indels.bed"

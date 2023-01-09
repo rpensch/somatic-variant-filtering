@@ -1,0 +1,3 @@
+sample	mutect2_vcf	strelka_spm_vcf	strelka_sim_vcf
+T-WLOS_0020_vs_N-WLOS_0020	test_samples/Mutect2_filtered_T-WLOS_0020_vs_N-WLOS_0020.vcf.gz	test_samples/StrelkaBP_T-WLOS_0020_vs_N-WLOS_0020_somatic_snvs.vcf.gz	test_samples/StrelkaBP_T-WLOS_0020_vs_N-WLOS_0020_somatic_indels.vcf.gz
+T-WLOS_0019_vs_N-WLOS_0019	test_samples/Mutect2_filtered_T-WLOS_0019_vs_N-WLOS_0019.vcf.gz	test_samples/StrelkaBP_T-WLOS_0019_vs_N-WLOS_0019_somatic_snvs.vcf.gz	test_samples/StrelkaBP_T-WLOS_0019_vs_N-WLOS_0019_somatic_indels.vcf.gz

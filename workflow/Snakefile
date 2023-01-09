@@ -2,7 +2,24 @@ import pandas as pd
 
 configfile: "config/config.yaml"
 
-samples = list(pd.read_table(config["samples"]).set_index("sample", drop=False)["sample"])
+input_files = pd.read_table(config["input_files"]).set_index("sample", drop=False)
+samples = list(pd.read_table(config["input_files"]).set_index("sample", drop=False)["sample"])
+
+rule link_vcfs:
+    input:
+        mutect2=lambda wildcards: input_files.loc[wildcards.sample]["mutect2_vcf"],
+        strelka_spm=lambda wildcards: input_files.loc[wildcards.sample]["strelka_spm_vcf"],
+        strelka_sim=lambda wildcards: input_files.loc[wildcards.sample]["strelka_sim_vcf"]
+    output:
+        mutect2="results/1_mutect2/raw/Mutect2_filtered_{sample}.vcf.gz",
+        strelka_spm="results/2_strelka/raw/StrelkaBP_{sample}_somatic_snvs.vcf.gz",
+        strelka_sim="results/2_strelka/raw/StrelkaBP_{sample}_somatic_indels.vcf.gz"
+    shell:
+        """
+        ln -s {input.mutect2} {output.mutect2}
+        ln -s {input.strelka_spm} {output.strelka_spm}
+        ln -s {input.strelka_sim} {output.strelka_sim}
+        """
 
 rule mutect2_filtering:
     input:
@@ -65,8 +82,8 @@ if config['germline_filter']:
         input:
             spm="results/3_mutect2_strelka_intersect/{sample}.mutect2.strelka.spm.filtered.intersect.vcf.gz",
             sim="results/3_mutect2_strelka_intersect/{sample}.mutect2.strelka.sim.filtered.intersect.vcf.gz",
-            germl_spm = config['germline_data']['spm'],
-            germl_sim = config['germline_data']['sim']
+            germl_spm = config['germline_data']['snps'],
+            germl_sim = config['germline_data']['indels']
         output:
             spm="results/4_germline_filtered/{sample}.mutect2.strelka.spm.filtered.intersect.germl.vcf.gz",
             sim="results/4_germline_filtered/{sample}.mutect2.strelka.sim.filtered.intersect.germl.vcf.gz"
