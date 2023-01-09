@@ -37,7 +37,17 @@ rule strelka2bed:
     log: 
         "logs/strelka2bed/{sample}.log"
     shell:
-        "scripts/vcf2bed.sh {input.spm} {input.sim} {output.spm} {output.sim}"
+        """
+        # Convert spm vcfs to bed files
+        printf "#CHROM\tSTART\tSTOP\n" > {output.spm}
+        zcat {input.spm} | convert2bed -i vcf --snvs | cut -f1-3 | sort -k1,1 -k2,2n >> {output.spm}
+
+        # Convert sim vcfs to bed files
+        printf "#CHROM\tSTART\tSTOP\n" > {output.sim}
+        zcat {input.sim} | convert2bed -i vcf --insertions | cut -f1-3 | sort -k1,1 -k2,2n >> {output.sim}
+        zcat {input.sim} | convert2bed -i vcf --deletions | cut -f1-3 | sort -k1,1 -k2,2n >> {output.sim}
+
+        """
 
 rule intersect:
     input:
