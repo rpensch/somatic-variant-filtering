@@ -1,1 +1,4 @@
-samples: config.samples.tsv
+samples: "config.samples.tsv"
+germline_data:
+  spm: "/home/rapha/ccancer_storage/cOSA_project/0_data/dog10K/dog10k.snps.bed.gz"
+  sim: "/home/rapha/ccancer_storage/cOSA_project/0_data/dog10K/dog10k.indels.bed.gz"
