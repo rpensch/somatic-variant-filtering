@@ -61,6 +61,7 @@ parser.add_argument('--m2_filt', required=True, type=str)
 parser.add_argument('--st_raw', required=True, type=str)
 parser.add_argument('--st_filt', required=True, type=str)
 parser.add_argument('--intersect', required=True, type=str)
+parser.add_argument('--germl', required=True, type=str)
 parser.add_argument('-o', '--out', required=True, type=str)
 
 args = parser.parse_args()
@@ -69,7 +70,8 @@ steps = [(args.m2_raw,'Mutect2_raw'),
          (args.m2_filt,'Mutect2_filtered'), 
          (args.st_raw,'Strelka_raw'), 
          (args.st_filt, 'Strelka_filtered'), 
-         (args.intersect, 'Mutect2_Strelka_intersect')]
+         (args.intersect, 'Mutect2_Strelka_intersect'),
+         (args.germl, 'germline_filtered')]
 
 spim_columns = [f for flatten in list(zip(
                [step[1] + '_spm' for step in steps], 
