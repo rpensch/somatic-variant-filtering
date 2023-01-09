@@ -4,20 +4,6 @@ import os.path
 import pandas as pd
 import argparse
 from vcfs import get_vcf_header, load_vcf, count_spims
-'''
-m2_raw="1_mutect2/raw/Mutect2_filtered_T-BlueSkye_vs_N-BlueSkye.vcf.gz"
-m2_filt="1_mutect2/filtered/T-BlueSkye_vs_N-BlueSkye.mutect2.spm.filtered.vcf.gz,1_mutect2/filtered/T-BlueSkye_vs_N-BlueSkye.mutect2.sim.filtered.vcf.gz"
-st_raw="2_strelka/raw/StrelkaBP_T-BlueSkye_vs_N-BlueSkye_somatic_snvs.vcf.gz,2_strelka/raw/StrelkaBP_T-BlueSkye_vs_N-BlueSkye_somatic_indels.vcf.gz"
-st_filt="2_strelka/filtered/T-BlueSkye_vs_N-BlueSkye.strelka.spm.filtered.vcf.gz,2_strelka/filtered/T-BlueSkye_vs_N-BlueSkye.strelka.sim.filtered.vcf.gz"
-intersect="3_mutect2_strelka_intersect/T-BlueSkye_vs_N-BlueSkye.mutect2.strelka.spm.filtered.intersect.vcf.gz,3_mutect2_strelka_intersect/T-BlueSkye_vs_N-BlueSkye.mutect2.strelka.sim.filtered.intersect.vcf.gz"
-steps = [(m2_raw,'Mutect2_raw'), 
-         (m2_filt,'Mutect2_filtered'), 
-         (st_raw,'Strelka_raw'), 
-         (st_filt, 'Strelka_filtered'), 
-         (intersect, 'Mutect2_Strelka_intersect')]
-
-
-'''
 
 # Parse command line arguments
 
